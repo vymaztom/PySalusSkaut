@@ -36,6 +36,7 @@ async def my_cover_callback(device_id):
 
 
 async def main():
+	sys.stdout.flush()
 	dictUID = {}
 	logging.basicConfig(level=logging.DEBUG)
 	config = configparser.ConfigParser()
