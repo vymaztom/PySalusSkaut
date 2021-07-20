@@ -43,6 +43,7 @@ async def main():
 	argData = config['DEFAULT']
 	listUID = config['ThingSpeakFields']
 	logger = open(str(argData['nameLogFile']),'a', encoding='utf-8')
+	logger.flush()
 
 	# print Header
 	for i in range(79):
@@ -76,7 +77,6 @@ async def main():
 		logger.write("-")
 	print("-")
 	logger.write("-" + "\n")
-	sys.stdout.write("ahoj\n")
 
 	# read data from SALUS GATEWAY
 	for i in range(int(listUID['max_climate_devices'])):
@@ -141,7 +141,6 @@ async def main():
 				ThingSpeakHumidity.send()
 			if argData['XLSLogger'] == "True":
 				XLSaddData(temperature, humidity)
-			logger.flush()
 			logger.close()
 			sys.stdout.flush()
 
