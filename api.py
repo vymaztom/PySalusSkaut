@@ -4,10 +4,16 @@ import argparse
 import asyncio
 import logging
 import sys
+import datetime
 
 from pyit600.exceptions import IT600AuthenticationError, IT600ConnectionError
 from pyit600.gateway_singleton import IT600GatewaySingleton
 from ExelLib_TT import *
+
+
+def printTXTfile(fileName):
+	with open(fileName,"r") as f:
+		print(f.read())
 
 
 async def my_climate_callback(device_id):
@@ -33,14 +39,36 @@ async def main():
 	config.read('config.ini')
 	argData = config['DEFAULT']
 	listUID = config['ThingSpeakFields']
+
+	# print Header
+	for i in range(79):
+		print("-", end="")
+	print("-")
+	printTXTfile("banner.txt")
+	now = datetime.datetime.now()
+	current_time = now.strftime("%d.%m.%Y %H:%M:%S")
+	print("Current TIME: " + current_time)
+	print("GATEWAY IP  : " + argData["gateway_ip"])
+	print("GATEWAY UID : " + argData["UID"])
+	if argData['ThingSpeakLogger'] == "True":
+		print("ThingSpeak  : True")
+	else:
+		print("ThingSpeak  : False")
+	if argData['XLSLogger'] == "True":
+		print("XLS logger  : True")
+	else:
+		print("XLS logger  : False")
+	for i in range(79):
+		print("-", end="")
+	print("-")
+
+	# read data from SALUS GATEWAY
 	for i in range(int(listUID['max_climate_devices'])):
 		oneUID = listUID['Field_' + str(i+1) + '_unique_id']
 		dictUID[oneUID] = i+1
 	async with IT600GatewaySingleton.get_instance(host=argData["gateway_ip"], euid=argData["UID"], debug=False) as gateway:
 		try:
 			await gateway.connect()
-			print(argData["gateway_ip"])
-			print(argData["UID"])
 		except IT600ConnectionError:
 			print("Connection error: check if you have specified gateway's IP address correctly.", file=sys.stderr)
 			sys.exit(1)
@@ -66,8 +94,9 @@ async def main():
 			print("All climate devices:")
 			print(repr(climate_devices))
 
-			#ThingSpeakTemperature = ThingSpeakSender(config['ThingSpeak']['API_KEY_TEMPERATURE'])
-			#ThingSpeakHumidity = ThingSpeakSender(config['ThingSpeak']['API_KEY_HUMIDITY'])
+
+			ThingSpeakTemperature = ThingSpeakSender(config['ThingSpeak']['API_KEY_TEMPERATURE'])
+			ThingSpeakHumidity = ThingSpeakSender(config['ThingSpeak']['API_KEY_HUMIDITY'])
 
 			temperature = {}
 			humidity = {}
@@ -81,15 +110,18 @@ async def main():
 
 				temperature[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
 				humidity[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
-				#ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
-				#ThingSpeakHumidity.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_humidity)
+				ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
+				ThingSpeakHumidity.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_humidity)
 
 				#print(f"Setting heating device {climate_device_id} temperature to 21 degrees celsius")
 				#await gateway.set_climate_device_temperature(climate_device_id, 21)
 
-			#ThingSpeakTemperature.send()
-			#ThingSpeakHumidity.send()
-			XLSaddData(temperature, humidity)
+			if argData['ThingSpeakLogger'] == "True":
+				print("ThingSpeakLogger >> data have been send")
+				ThingSpeakTemperature.send()
+				ThingSpeakHumidity.send()
+			if argData['XLSLogger'] == "True":
+				XLSaddData(temperature, humidity)
 
 
 if __name__ == "__main__":
