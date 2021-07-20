@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import configparser
 import argparse
 import asyncio
@@ -7,7 +7,8 @@ import sys
 
 from pyit600.exceptions import IT600AuthenticationError, IT600ConnectionError
 from pyit600.gateway_singleton import IT600GatewaySingleton
-from sendToThingSpeak import ThingSpeakSender
+from ExelLib_TT import *
+
 
 async def my_climate_callback(device_id):
     print("Got callback for climate device id: " + device_id)
@@ -65,9 +66,11 @@ async def main():
 			print("All climate devices:")
 			print(repr(climate_devices))
 
-			ThingSpeakTemperature = ThingSpeakSender(config['ThingSpeak']['API_KEY_TEMPERATURE'])
-			ThingSpeakHumidity = ThingSpeakSender(config['ThingSpeak']['API_KEY_HUMIDITY'])
+			#ThingSpeakTemperature = ThingSpeakSender(config['ThingSpeak']['API_KEY_TEMPERATURE'])
+			#ThingSpeakHumidity = ThingSpeakSender(config['ThingSpeak']['API_KEY_HUMIDITY'])
 
+			temperature = {}
+			humidity = {}
 
 			for climate_device_id in climate_devices:
 				print(f"Climate device {climate_device_id} status:")
@@ -76,14 +79,17 @@ async def main():
 				print(climate_devices.get(climate_device_id).current_temperature, end=" °C, ")
 				print(climate_devices.get(climate_device_id).current_humidity, end=" %\r\n")
 
-				ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
-				ThingSpeakHumidity.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_humidity)
+				temperature[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
+				humidity[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
+				#ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
+				#ThingSpeakHumidity.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_humidity)
 
 				#print(f"Setting heating device {climate_device_id} temperature to 21 degrees celsius")
 				#await gateway.set_climate_device_temperature(climate_device_id, 21)
 
-			ThingSpeakTemperature.send()
-			ThingSpeakHumidity.send()
+			#ThingSpeakTemperature.send()
+			#ThingSpeakHumidity.send()
+			XLSaddData(temperature, humidity)
 
 
 if __name__ == "__main__":
