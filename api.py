@@ -76,6 +76,7 @@ async def main():
 		logger.write("-")
 	print("-")
 	logger.write("-" + "\n")
+	sys.stdout.write("ahoj\n")
 
 	# read data from SALUS GATEWAY
 	for i in range(int(listUID['max_climate_devices'])):
