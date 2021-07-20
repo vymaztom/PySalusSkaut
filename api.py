@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import logging
 import sys
+import os
 import datetime
 
 from pyit600.exceptions import IT600AuthenticationError, IT600ConnectionError
@@ -13,8 +14,9 @@ from sendToThingSpeak import ThingSpeakSender
 
 def printTXTfile(fileName, file):
 	with open(fileName,"r") as f:
-		print(f.read())
-		file.write(f.read())
+		data = f.read()
+		print(data)
+		file.write(data)
 
 
 async def my_climate_callback(device_id):
@@ -40,8 +42,7 @@ async def main():
 	config.read('config.ini')
 	argData = config['DEFAULT']
 	listUID = config['ThingSpeakFields']
-
-	logger = open(config['nameLogFile'],"a")
+	logger = open(str(argData['nameLogFile']),'a', encoding='utf-8')
 
 	# print Header
 	for i in range(79):
