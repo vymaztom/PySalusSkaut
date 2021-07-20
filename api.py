@@ -9,7 +9,7 @@ import datetime
 from pyit600.exceptions import IT600AuthenticationError, IT600ConnectionError
 from pyit600.gateway_singleton import IT600GatewaySingleton
 from ExelLib_TT import *
-
+from sendToThingSpeak import ThingSpeakSender
 
 def printTXTfile(fileName):
 	with open(fileName,"r") as f:
