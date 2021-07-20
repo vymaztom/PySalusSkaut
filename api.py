@@ -147,4 +147,6 @@ async def main():
 
 
 if __name__ == "__main__":
-	asyncio.run(main(), debug=True)
+	future = asyncio.run(main(), debug=True)
+	result = future.result()
+	print(result)
