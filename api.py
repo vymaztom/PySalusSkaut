@@ -88,7 +88,8 @@ async def main():
 		except IT600ConnectionError:
 			print("Connection error: check if you have specified gateway's IP address correctly.", file=sys.stderr)
 			logger.write("Connection error: check if you have specified gateway's IP address correctly." + "\n")
-			sys.exit(1)
+			#sys.exit(1)
+			sys.exit(0)
 		except IT600AuthenticationError:
 			print("Authentication error: check if you have specified gateway's EUID correctly.", file=sys.stderr)
 			logger.write("Authentication error: check if you have specified gateway's EUID correctly." + "\n")
