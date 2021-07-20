@@ -37,7 +37,7 @@ async def my_cover_callback(device_id):
 
 async def main():
 	dictUID = {}
-	logging.basicConfig(level=logging.DEBUG)
+	logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 	config = configparser.ConfigParser()
 	config.read('config.ini')
 	argData = config['DEFAULT']
@@ -143,7 +143,7 @@ async def main():
 			if argData['XLSLogger'] == "True":
 				XLSaddData(temperature, humidity)
 			logger.close()
-			sys.stdout.flush()
+
 
 
 if __name__ == "__main__":

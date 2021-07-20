@@ -1,0 +1,11 @@
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+DEBUG:asyncio:<asyncio.TransportSocket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.187', 16993), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=556 read=<_OverlappedFuture pending overlapped=<pending, 0x1f341a31e50> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x000001F341A57AC0>)
+DEBUG:asyncio:<_ProactorSocketTransport fd=556>: Fatal read error on pipe transport
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\proactor_events.py", line 299, in _loop_reading
+    self._read_fut = self._loop._proactor.recv(self._sock, 32768)
+  File "D:\INSTALL\Python39\lib\asyncio\windows_events.py", line 449, in recv
+    ov.WSARecv(conn.fileno(), nbytes, flags)
+ConnectionAbortedError: [WinError 10053] Software v hostitelském počítači ukončil vytvořené připojení
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
