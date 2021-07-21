@@ -37,6 +37,7 @@ async def my_cover_callback(device_id):
 
 async def main():
 	dictUID = {}
+	dictUID_ = {}
 	logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 	config = configparser.ConfigParser()
 	config.read('config.ini')
@@ -81,6 +82,7 @@ async def main():
 	# read data from SALUS GATEWAY
 	for i in range(int(listUID['max_climate_devices'])):
 		oneUID = listUID['Field_' + str(i+1) + '_unique_id']
+		dictUID_[oneUID] = 'Field_' + str(i+1) + '_unique_id'
 		dictUID[oneUID] = i+1
 	async with IT600GatewaySingleton.get_instance(host=argData["gateway_ip"], euid=argData["UID"], debug=False) as gateway:
 		try:
@@ -127,9 +129,9 @@ async def main():
 				print(climate_devices.get(climate_device_id).name, end=": \t\t")
 				print(climate_devices.get(climate_device_id).current_temperature, end=" °C, ")
 				print(climate_devices.get(climate_device_id).current_humidity, end=" %\r\n")
-				print(dictUID[climate_device_id]])
-				temperature[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
-				humidity[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
+
+				temperature[dictUID_dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
+				humidity[dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
 				ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
 				ThingSpeakHumidity.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_humidity)
 
