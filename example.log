@@ -9,3 +9,16 @@ Traceback (most recent call last):
     ov.WSARecv(conn.fileno(), nbytes, flags)
 ConnectionAbortedError: [WinError 10053] Software v hostitelském počítači ukončil vytvořené připojení
 DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:89> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at D:\INSTALL\Python39\lib\asyncio\tasks.py:903, <TaskWakeupMethWrapper object at 0x0000026DD5DC7AC0>()] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:424> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.531 seconds
+DEBUG:asyncio:<asyncio.TransportSocket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.134', 1987), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=700 read=<_OverlappedFuture pending overlapped=<pending, 0x26dd5e11e50> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x0000026DD5E37AC0>)
+DEBUG:pyit600:Refreshed gateway device
+DEBUG:pyit600:Refreshed 6 climate devices
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:147> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.843 seconds
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+DEBUG:asyncio:<asyncio.TransportSocket fd=436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.134', 2060), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=436 read=<_OverlappedFuture pending overlapped=<pending, 0x240f8271e50> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x00000240F8298880>)
+DEBUG:pyit600:Refreshed gateway device
+DEBUG:pyit600:Refreshed 6 climate devices
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:147> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.797 seconds
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>

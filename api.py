@@ -129,7 +129,7 @@ async def main():
 				print(climate_devices.get(climate_device_id).name, end=": \t\t")
 				print(climate_devices.get(climate_device_id).current_temperature, end=" °C, ")
 				print(climate_devices.get(climate_device_id).current_humidity, end=" %\r\n")
-
+				print("add UID_ " + dictUID_[climate_device_id])
 				temperature[dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
 				humidity[dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
 				ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
@@ -149,6 +149,4 @@ async def main():
 
 
 if __name__ == "__main__":
-	future = asyncio.run(main(), debug=True)
-	result = future.result()
-	print(result)
+	asyncio.run(main(), debug=True)
