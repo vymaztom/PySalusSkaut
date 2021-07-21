@@ -127,7 +127,7 @@ async def main():
 				print(climate_devices.get(climate_device_id).name, end=": \t\t")
 				print(climate_devices.get(climate_device_id).current_temperature, end=" °C, ")
 				print(climate_devices.get(climate_device_id).current_humidity, end=" %\r\n")
-
+				print(dictUID[climate_device_id]])
 				temperature[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
 				humidity[dictUID[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
 				ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
