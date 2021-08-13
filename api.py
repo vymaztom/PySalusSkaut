@@ -23,7 +23,7 @@ ThingSpeakLogger = True
 
 API_KEY_TEMPERATURE = "M9KG1Q4VUPKGNTL4"
 API_KEY_HUMIDITY = "9OGDYW5HMAGJ7P2H"
-
+API_KEY_SETTED_TEMPERATURE = "F5EEQEKZZVTXBOBT"
 
 # počet sensorů, nutné číslovat od 1 a nevynechávat čísla
 max_climate_devices = 6
@@ -148,10 +148,12 @@ async def main():
 
 
 			ThingSpeakTemperature = ThingSpeakSender(API_KEY_TEMPERATURE)
+			ThingSpeakSetedTemperature = ThingSpeakSender(API_KEY_SETTED_TEMPERATURE)
 			ThingSpeakHumidity = ThingSpeakSender(API_KEY_HUMIDITY)
 
 			temperature = {}
 			humidity = {}
+			temperatureSetted = {}
 
 			for climate_device_id in climate_devices:
 				print(f"Climate device {climate_device_id} status:")
@@ -161,10 +163,11 @@ async def main():
 				print(climate_devices.get(climate_device_id).current_humidity, end=" %\r\n")
 				print("add UID_ " + dictUID_[climate_device_id] + " = " + climate_device_id)
 				temperature[dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).current_temperature
+				temperatureSetted[dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).target_temperature
 				humidity[dictUID_[climate_device_id]] = climate_devices.get(climate_device_id).current_humidity
 				ThingSpeakTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_temperature)
 				ThingSpeakHumidity.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).current_humidity)
-
+				ThingSpeakSetedTemperature.addField(dictUID[climate_device_id],climate_devices.get(climate_device_id).target_temperature)
 				#print(f"Setting heating device {climate_device_id} temperature to 21 degrees celsius")
 				#await gateway.set_climate_device_temperature(climate_device_id, 21)
 
@@ -172,8 +175,9 @@ async def main():
 				print("ThingSpeakLogger >> data have been send")
 				ThingSpeakTemperature.send()
 				ThingSpeakHumidity.send()
+				ThingSpeakSetedTemperature.send()
 			if XLSLogger == True:
-				XLSaddData(temperature, humidity)
+				XLSaddData(temperature, humidity, temperatureSetted)
 
 
 

@@ -13,7 +13,7 @@ def getXLSNameByDate():
 	current_time = now.strftime("%m-%Y")
 	return PATHPREFIX + current_time + ".xls"
 
-def XLSaddData(temperature = {}, humidity = {}):
+def XLSaddData(temperature = {}, humidity = {}, temperatureSetted = {}):
 	fileName = getXLSNameByDate()
 	now = datetime.datetime.now()
 	if os.path.exists(fileName):
@@ -41,6 +41,18 @@ def XLSaddData(temperature = {}, humidity = {}):
 		sheet2.write(r2, 4, humidity["Field_4_unique_id"])
 		sheet2.write(r2, 5, humidity["Field_5_unique_id"])
 		sheet2.write(r2, 6, humidity["Field_6_unique_id"])
+
+		r_sheet3 = rb.sheet_by_index(2)
+		r3 = r_sheet3.nrows
+		sheet3 = wb.get_sheet(2)
+		sheet3.write(r3, 0, now.strftime("%d.%m %H:%M:%S"))
+		sheet3.write(r3, 1, temperatureSetted["Field_1_unique_id"])
+		sheet3.write(r3, 2, temperatureSetted["Field_2_unique_id"])
+		sheet3.write(r3, 3, temperatureSetted["Field_3_unique_id"])
+		sheet3.write(r3, 4, temperatureSetted["Field_4_unique_id"])
+		sheet3.write(r3, 5, temperatureSetted["Field_5_unique_id"])
+		sheet3.write(r3, 6, temperatureSetted["Field_6_unique_id"])
+
 
 		wb.save(fileName)
 	else:
@@ -79,6 +91,25 @@ def XLSaddData(temperature = {}, humidity = {}):
 		sheet2.write(1, 4, humidity["Field_4_unique_id"])
 		sheet2.write(1, 5, humidity["Field_5_unique_id"])
 		sheet2.write(1, 6, humidity["Field_6_unique_id"])
+
+
+		sheet3 = wb.add_sheet('temperatureSetted')
+		sheet3.write(0, 0, 'Date - Time')
+		sheet3.write(0, 1, 'oranžová klubovna [°C]')
+		sheet3.write(0, 2, 'zelená klubovna [°C]')
+		sheet3.write(0, 3, 'modrá klubovna [°C]')
+		sheet3.write(0, 4, 'žlutá klubovna [°C]')
+		sheet3.write(0, 5, 'velká klubovna [°C]')
+		sheet3.write(0, 6, 'sklad [°C]')
+
+		sheet3.write(1, 0, now.strftime("%d.%m %H:%M:%S"))
+		sheet3.write(1, 1, temperatureSetted["Field_1_unique_id"])
+		sheet3.write(1, 2, temperatureSetted["Field_2_unique_id"])
+		sheet3.write(1, 3, temperatureSetted["Field_3_unique_id"])
+		sheet3.write(1, 4, temperatureSetted["Field_4_unique_id"])
+		sheet3.write(1, 5, temperatureSetted["Field_5_unique_id"])
+		sheet3.write(1, 6, temperatureSetted["Field_6_unique_id"])
+
 
 		wb.save(fileName)
 
