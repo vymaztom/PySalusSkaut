@@ -17,6 +17,7 @@ class ThingSpeakSender:
 		self.URL_add = self.URL_add + "&field" + str(int(numberOfField)) + "=" + str(round(float(data),2))
 
 	def send(self):
+		print(self.URL + self.URL_add)
 		with urllib2.urlopen(self.URL + self.URL_add) as f:
 			f.read()
 			f.close()
