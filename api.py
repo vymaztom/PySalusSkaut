@@ -17,7 +17,7 @@ from sendToThingSpeak import ThingSpeakSender
 gateway_ip = "192.168.1.5"
 UID = "001E5E0902134528"
 nameLogFile = "log.txt"
-XLSLogger = False
+XLSLogger = True
 ThingSpeakLogger = True
 
 
@@ -82,7 +82,7 @@ async def main():
 	for i in range(79):
 		print("-", end="")
 	print("-")
-	#printTXTfile("banner.txt")
+	printTXTfile("banner.txt")
 	now = datetime.datetime.now()
 	current_time = now.strftime("%d.%m.%Y %H:%M:%S")
 	print("Current TIME: " + current_time)
