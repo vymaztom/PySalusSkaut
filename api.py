@@ -17,7 +17,7 @@ from sendToThingSpeak import ThingSpeakSender
 gateway_ip = "192.168.1.5"
 UID = "001E5E0902134528"
 nameLogFile = "log.txt"
-XLSLogger = True
+XLSLogger = False
 ThingSpeakLogger = True
 
 
