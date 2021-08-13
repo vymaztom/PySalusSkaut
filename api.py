@@ -13,40 +13,44 @@ from pyit600.gateway_singleton import IT600GatewaySingleton
 from ExelLib_TT import *
 from sendToThingSpeak import ThingSpeakSender
 
+config = configparser.ConfigParser()
 
-gateway_ip = "192.168.1.5"
-UID = "001E5E0902134528"
-nameLogFile = "log.txt"
-XLSLogger = True
-ThingSpeakLogger = True
+gateway_ip = config["DEFAULT"]["IP"]
+UID = config["DEFAULT"]["UID"]
+nameLogFile = config["DEFAULT"]["nameLogFile"]
+XLSLogger = False
+if config["DEFAULT"]["XLSLogger"] == "True":
+	XLSLogger = True
+ThingSpeakLogger = False
+if config["DEFAULT"]["ThingSpeakLogger"] == "True":
+	ThingSpeakLogger = True
 
-
-API_KEY_TEMPERATURE = "M9KG1Q4VUPKGNTL4"
-API_KEY_HUMIDITY = "9OGDYW5HMAGJ7P2H"
-API_KEY_SETTED_TEMPERATURE = "F5EEQEKZZVTXBOBT"
+API_KEY_TEMPERATURE = config["ThingSpeak"]["API_KEY_TEMPERATURE"]
+API_KEY_HUMIDITY = config["ThingSpeak"]["API_KEY_HUMIDITY"]
+API_KEY_SETTED_TEMPERATURE = config["ThingSpeak"]["API_KEY_SETTED_TEMPERATURE"]
 
 # počet sensorů, nutné číslovat od 1 a nevynechávat čísla
-max_climate_devices = 6
+max_climate_devices = config["ThingSpeakFields"]["max_climate_devices"]
 # oranžová klubovna
-Field_1_unique_id = "001e5e09025d0d89"
+Field_1_unique_id = config["ThingSpeakFields"]["Field_1_unique_id"]
 # zelená klubovna
-Field_2_unique_id = "001e5e09025d92c0"
+Field_2_unique_id = config["ThingSpeakFields"]["Field_2_unique_id"]
 # modrá klubovna
-Field_3_unique_id = "001e5e09025d0f3a"
+Field_3_unique_id = config["ThingSpeakFields"]["Field_3_unique_id"]
 # žlutá klubovna
-Field_4_unique_id = "001e5e090258f2d9"
+Field_4_unique_id = config["ThingSpeakFields"]["Field_4_unique_id"]
 # velká klubovna
-Field_5_unique_id = "001e5e090258fbcd"
+Field_5_unique_id = config["ThingSpeakFields"]["Field_5_unique_id"]
 # sklad
-Field_6_unique_id = "001e5e090258f131"
+Field_6_unique_id = config["ThingSpeakFields"]["Field_6_unique_id"]
 
 Field__unique_id = {}
-Field__unique_id["Field_1_unique_id"] = "001e5e09025d0d89";
-Field__unique_id["Field_2_unique_id"] = "001e5e09025d92c0";
-Field__unique_id["Field_3_unique_id"] = "001e5e09025d0f3a";
-Field__unique_id["Field_4_unique_id"] = "001e5e090258f2d9";
-Field__unique_id["Field_5_unique_id"] = "001e5e090258fbcd";
-Field__unique_id["Field_6_unique_id"] = "001e5e090258f131";
+Field__unique_id["Field_1_unique_id"] = Field_1_unique_id
+Field__unique_id["Field_2_unique_id"] = Field_2_unique_id
+Field__unique_id["Field_3_unique_id"] = Field_3_unique_id
+Field__unique_id["Field_4_unique_id"] = Field_4_unique_id
+Field__unique_id["Field_5_unique_id"] = Field_5_unique_id
+Field__unique_id["Field_6_unique_id"] = Field_6_unique_id
 
 
 
