@@ -82,7 +82,7 @@ async def main():
 	for i in range(79):
 		print("-", end="")
 	print("-")
-	printTXTfile("banner.txt")
+	#printTXTfile("banner.txt")
 	now = datetime.datetime.now()
 	current_time = now.strftime("%d.%m.%Y %H:%M:%S")
 	print("Current TIME: " + current_time)
