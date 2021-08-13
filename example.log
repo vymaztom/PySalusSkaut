@@ -43,3 +43,187 @@ DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
 DEBUG:asyncio:<asyncio.TransportSocket fd=548, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.187', 1044), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=548 read=<_OverlappedFuture pending overlapped=<pending, 0x1e779471ee0> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x000001E779497820>)
 WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:147> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.125 seconds
 DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+DEBUG:pyit600:Refreshed gateway device
+DEBUG:pyit600:Refreshed 6 climate devices
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+ERROR:asyncio:Exception in callback Cron.set_result(<_GatheringFu...00 gateway')]>)
+handle: <Handle Cron.set_result(<_GatheringFu...00 gateway')]>)>
+Traceback (most recent call last):
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 810, in _make_encrypted_request
+    resp = await self._session.post(
+  File "D:\INSTALL\Python39\lib\site-packages\aiohttp\client.py", line 381, in _request
+    raise RuntimeError("Session is closed")
+RuntimeError: Session is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\INSTALL\Python39\lib\site-packages\aiocron\__init__.py", line 100, in set_result
+    raise result
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py", line 90, in main
+    await gateway.connect()
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 90, in connect
+    all_devices = await self._make_encrypted_request(
+  File "C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\pyit600\gateway.py", line 844, in _make_encrypted_request
+    raise IT600CommandError(
+pyit600.exceptions.IT600CommandError: Unknown error occurred while communicating with iT600 gateway
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:90> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at D:\INSTALL\Python39\lib\asyncio\tasks.py:903, <TaskWakeupMethWrapper object at 0x0000017080CA3820>()] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:424> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.125 seconds
+DEBUG:asyncio:<asyncio.TransportSocket fd=676, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.25', 5256), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=676 read=<_OverlappedFuture pending overlapped=<pending, 0x17080ceaee0> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x0000017080D252E0>)
+DEBUG:pyit600:Refreshed gateway device
+DEBUG:pyit600:Refreshed 6 climate devices
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:148> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 3.719 seconds
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+DEBUG:asyncio:<asyncio.TransportSocket fd=628, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.25', 5264), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=628 read=<_OverlappedFuture pending overlapped=<pending, 0x297738ebee0> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x00000297739252E0>)
+DEBUG:pyit600:Refreshed gateway device
+DEBUG:pyit600:Refreshed 6 climate devices
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:148> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.781 seconds
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
