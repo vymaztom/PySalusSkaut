@@ -76,9 +76,7 @@ async def main():
 	dictUID = {}
 	dictUID_ = {}
 	#logging.basicConfig(filename='../../home/pi/PySalusSkaut/example.log', encoding='utf-8', level=logging.DEBUG)
-	config = configparser.ConfigParser()
-	config.read('config.ini')
-	listUID = config['ThingSpeakFields']
+
 
 	# print Header
 	for i in range(79):
