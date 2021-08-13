@@ -28,3 +28,18 @@ DEBUG:pyit600:Refreshed gateway device
 DEBUG:pyit600:Refreshed 6 climate devices
 WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:147> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.609 seconds
 DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:89> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at D:\INSTALL\Python39\lib\asyncio\tasks.py:903, <TaskWakeupMethWrapper object at 0x0000015F71977940>()] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:424> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.531 seconds
+DEBUG:asyncio:<asyncio.TransportSocket fd=488, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.187', 1031), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=488 read=<_OverlappedFuture pending overlapped=<pending, 0x15f719c1ee0> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x0000015F719E7820>)
+DEBUG:asyncio:<_ProactorSocketTransport fd=488 write=<_OverlappedFuture finished result=32 created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:546>>: Fatal read error on pipe transport
+Traceback (most recent call last):
+  File "D:\INSTALL\Python39\lib\asyncio\proactor_events.py", line 299, in _loop_reading
+    self._read_fut = self._loop._proactor.recv(self._sock, 32768)
+  File "D:\INSTALL\Python39\lib\asyncio\windows_events.py", line 449, in recv
+    ov.WSARecv(conn.fileno(), nbytes, flags)
+ConnectionAbortedError: [WinError 10053] Software v hostitelském počítači ukončil vytvořené připojení
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
+DEBUG:pyit600:Trying to connect to gateway at 192.168.1.5
+DEBUG:asyncio:<asyncio.TransportSocket fd=548, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.1.187', 1044), raddr=('192.168.1.5', 80)> connected to 192.168.1.5:80: (<_ProactorSocketTransport fd=548 read=<_OverlappedFuture pending overlapped=<pending, 0x1e779471ee0> cb=[_ProactorReadPipeTransport._loop_reading()] created at D:\INSTALL\Python39\lib\asyncio\windows_events.py:465>>, <aiohttp.client_proto.ResponseHandler object at 0x000001E779497820>)
+WARNING:asyncio:Executing <Task pending name='Task-1' coro=<main() running at C:\Users\vyma9\OneDrive\Dokumenty\klubovna\PythonSalus\PySalusSkaut\api.py:147> cb=[_run_until_complete_cb() at D:\INSTALL\Python39\lib\asyncio\base_events.py:184] created at D:\INSTALL\Python39\lib\asyncio\base_events.py:621> took 0.125 seconds
+DEBUG:asyncio:Close <ProactorEventLoop running=False closed=False debug=True>
