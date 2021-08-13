@@ -13,12 +13,48 @@ from pyit600.gateway_singleton import IT600GatewaySingleton
 from ExelLib_TT import *
 from sendToThingSpeak import ThingSpeakSender
 
-def printTXTfile(fileName, file):
+
+gateway_ip = "192.168.1.5"
+UID = "001E5E0902134528"
+nameLogFile = "log.txt"
+XLSLogger = True
+ThingSpeakLogger = True
+
+
+API_KEY_TEMPERATURE = "M9KG1Q4VUPKGNTL4"
+API_KEY_HUMIDITY = "9OGDYW5HMAGJ7P2H"
+
+
+# počet sensorů, nutné číslovat od 1 a nevynechávat čísla
+max_climate_devices = 6
+# oranžová klubovna
+Field_1_unique_id = "001e5e09025d0d89"
+# zelená klubovna
+Field_2_unique_id = "001e5e09025d92c0"
+# modrá klubovna
+Field_3_unique_id = "001e5e09025d0f3a"
+# žlutá klubovna
+Field_4_unique_id = "001e5e090258f2d9"
+# velká klubovna
+Field_5_unique_id = "001e5e090258fbcd"
+# sklad
+Field_6_unique_id = "001e5e090258f131"
+
+Field__unique_id = {}
+Field__unique_id["Field_1_unique_id"] = "001e5e09025d0d89";
+Field__unique_id["Field_2_unique_id"] = "001e5e09025d92c0";
+Field__unique_id["Field_3_unique_id"] = "001e5e09025d0f3a";
+Field__unique_id["Field_4_unique_id"] = "001e5e090258f2d9";
+Field__unique_id["Field_5_unique_id"] = "001e5e090258fbcd";
+Field__unique_id["Field_6_unique_id"] = "001e5e090258f131";
+
+
+
+
+def printTXTfile(fileName):
 	with open(fileName,"r") as f:
 		data = f.read()
 		print(data)
-		file.write(data)
-
 
 async def my_climate_callback(device_id):
     print("Got callback for climate device id: " + device_id)
@@ -42,64 +78,59 @@ async def main():
 	#logging.basicConfig(filename='../../home/pi/PySalusSkaut/example.log', encoding='utf-8', level=logging.DEBUG)
 	config = configparser.ConfigParser()
 	config.read('config.ini')
-	argData = config['DEFAULT']
 	listUID = config['ThingSpeakFields']
-	logger = open(str(argData['nameLogFile']),'a', encoding='utf-8')
-	logger.flush()
 
 	# print Header
 	for i in range(79):
 		print("-", end="")
-		logger.write("-")
 	print("-")
-	logger.write("-" + "\n")
-	printTXTfile("banner.txt", logger)
+	printTXTfile("banner.txt")
 	now = datetime.datetime.now()
 	current_time = now.strftime("%d.%m.%Y %H:%M:%S")
 	print("Current TIME: " + current_time)
-	logger.write("Current TIME: " + current_time + "\n")
-	print("GATEWAY IP  : " + argData["gateway_ip"])
-	logger.write("GATEWAY IP  : " + argData["gateway_ip"] + "\n")
-	print("GATEWAY UID : " + argData["UID"])
-	logger.write("GATEWAY UID : " + argData["UID"] + "\n")
-	if argData['ThingSpeakLogger'] == "True":
+
+	print("GATEWAY IP  : " + gateway_ip)
+
+	print("GATEWAY UID : " + UID)
+
+	if ThingSpeakLogger == True:
 		print("ThingSpeak  : True")
-		logger.write("ThingSpeak  : True" + "\n")
+
 	else:
 		print("ThingSpeak  : False")
-		logger.write("ThingSpeak  : False" + "\n")
-	if argData['XLSLogger'] == "True":
+
+	if XLSLogger == True:
 		print("XLS logger  : True")
-		logger.write("XLS logger  : True" + "\n")
+
 	else:
 		print("XLS logger  : False")
-		logger.write("XLS logger  : False" + "\n")
+
 	for i in range(79):
 		print("-", end="")
-		logger.write("-")
+
 	print("-")
-	logger.write("-" + "\n")
+
 
 	# read data from SALUS GATEWAY
-	for i in range(int(listUID['max_climate_devices'])):
-		oneUID = listUID['Field_' + str(i+1) + '_unique_id']
+	for i in range(int(max_climate_devices)):
+		oneUID = Field__unique_id['Field_' + str(i+1) + '_unique_id']
 		dictUID_[oneUID] = 'Field_' + str(i+1) + '_unique_id'
 		dictUID[oneUID] = i+1
-	async with IT600GatewaySingleton.get_instance(host=argData["gateway_ip"], euid=argData["UID"], debug=False) as gateway:
+	async with IT600GatewaySingleton.get_instance(host=gateway_ip, euid=UID, debug=False) as gateway:
 		try:
 			await gateway.connect()
 		except IT600ConnectionError:
 			print("Connection error: check if you have specified gateway's IP address correctly.", file=sys.stderr)
-			logger.write("Connection error: check if you have specified gateway's IP address correctly." + "\n")
+
 			#sys.exit(1)
 			sys.exit(0)
 		except IT600AuthenticationError:
 			print("Authentication error: check if you have specified gateway's EUID correctly.", file=sys.stderr)
-			logger.write("Authentication error: check if you have specified gateway's EUID correctly." + "\n")
+
 			sys.exit(2)
 		except ConnectionAbortedError:
 			print("Software v hostitelském počítači ukončil vytvořené připojení.", file=sys.stderr)
-			logger.write("Software v hostitelském počítači ukončil vytvořené připojení." + "\n")
+
 			sys.exit(3)
 
 		await gateway.add_climate_update_callback(my_climate_callback)
@@ -118,8 +149,8 @@ async def main():
 			print(repr(climate_devices))
 
 
-			ThingSpeakTemperature = ThingSpeakSender(config['ThingSpeak']['API_KEY_TEMPERATURE'])
-			ThingSpeakHumidity = ThingSpeakSender(config['ThingSpeak']['API_KEY_HUMIDITY'])
+			ThingSpeakTemperature = ThingSpeakSender(API_KEY_TEMPERATURE)
+			ThingSpeakHumidity = ThingSpeakSender(API_KEY_HUMIDITY)
 
 			temperature = {}
 			humidity = {}
@@ -139,13 +170,13 @@ async def main():
 				#print(f"Setting heating device {climate_device_id} temperature to 21 degrees celsius")
 				#await gateway.set_climate_device_temperature(climate_device_id, 21)
 
-			if argData['ThingSpeakLogger'] == "True":
+			if ThingSpeakLogger == True:
 				print("ThingSpeakLogger >> data have been send")
 				ThingSpeakTemperature.send()
 				ThingSpeakHumidity.send()
-			if argData['XLSLogger'] == "True":
+			if XLSLogger == True:
 				XLSaddData(temperature, humidity)
-			logger.close()
+
 
 
 
