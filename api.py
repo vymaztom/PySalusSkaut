@@ -34,7 +34,7 @@ async def my_switch_callback(device_id):
 async def my_cover_callback(device_id):
     print("Got callback for cover device id: " + device_id)
 
-
+@aiocron.crontab('*/5 * * * *')
 async def main():
 	dictUID = {}
 	dictUID_ = {}
@@ -149,4 +149,5 @@ async def main():
 
 
 if __name__ == "__main__":
-	asyncio.run(main(), debug=True)
+	#asyncio.run(main(), debug=True)
+	asyncio.get_event_loop().run_forever()

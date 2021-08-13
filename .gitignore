@@ -2,3 +2,5 @@
 ############
 config.ini
 *.ini
+*.xls
+*.log
