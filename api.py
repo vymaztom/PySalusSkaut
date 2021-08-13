@@ -14,9 +14,11 @@ from ExelLib_TT import *
 from sendToThingSpeak import ThingSpeakSender
 
 config = configparser.ConfigParser()
+config.read('config.ini')
 
-gateway_ip = config["DEFAULT"]["gateway_ip"]
-UID = config["DEFAULT"]["UID"]
+
+gateway_ip = config['DEFAULT']['gateway_ip']
+UID = config['DEFAULT']['UID']
 nameLogFile = config["DEFAULT"]["nameLogFile"]
 XLSLogger = False
 if config["DEFAULT"]["XLSLogger"] == "True":
