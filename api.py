@@ -15,7 +15,7 @@ from sendToThingSpeak import ThingSpeakSender
 
 config = configparser.ConfigParser()
 
-gateway_ip = config["DEFAULT"]["IP"]
+gateway_ip = config["DEFAULT"]["gateway_ip"]
 UID = config["DEFAULT"]["UID"]
 nameLogFile = config["DEFAULT"]["nameLogFile"]
 XLSLogger = False
