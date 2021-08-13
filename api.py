@@ -39,7 +39,7 @@ async def my_cover_callback(device_id):
 async def main():
 	dictUID = {}
 	dictUID_ = {}
-	logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+	logging.basicConfig(filename='~/PySalusSkaut/example.log', encoding='utf-8', level=logging.DEBUG)
 	config = configparser.ConfigParser()
 	config.read('config.ini')
 	argData = config['DEFAULT']
